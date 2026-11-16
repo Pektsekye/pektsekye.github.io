@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title> Product Category Dropdowns </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="List of modifications for the Product Category Dropdowns wordpress plugin." />
+<meta name="keywords" content="Product Category Dropdowns, modifications, WooCommerce, WordPress plugin" />
+<meta name="robots" content="INDEX,FOLLOW" />
+<link rel="stylesheet" type="text/css" href="../modifications.css" media="all" />
+</head>
+<body class=" cms-page-view cms-no-modifications">
+
+                <!-- start content -->
+                    <div>
+
+  <br/>
+
+  <h3>Modifications for the <a href="https://wordpress.org/plugins/product-category-dropdowns/" target="_blank">Product Category Dropdowns</a> WordPress plugin:</h3>
+
+<br/>
+
+
+  <br/>
+
+
+  <dl class="table-display">
+
+
+
+
+
+    <dt>Horizontal view</dt>
+
+    <dd>
+
+This modification will display all drop-down selects in one line and will display one select per line on mobile (responsive) view.<br/>
+
+      <a href="/demo/wp/pcd/modifications/horizontal_view_1.png" target="_blank"> screenshot 1</a><br/>
+
+      <a href="/demo/wp/pcd/modifications/horizontal_view_2.png" target="_blank"> screenshot 2</a><br/>
+
+ download modified files and instructions : <a href="/demo/wp/pcd/modifications/horizontal_view.zip" target="_blank">horizontal_view.zip</a><br/>
+
+download the Product Category Dropdowns 1.0.0 plugin with all files modified: <a href="/demo/wp/pcd/modifications/pcd_1.0.0_with_horizontal_view.zip" target="_blank">pcd_1.0.0_with_horizontal_view.zip</a><br/>
+
+    </dd>
+
+
+
+
+
+    <dt>Start from selected category</dt>
+
+    <dd>
+
+This modification will display child categories of some selected category instead of the root categories in the first drop-down select.<br/>
+
+You will have to specify the category ID in the .php file like this:<br/>
+
+  protected $_startFromCategoryId = 16;<br/>
+
+      <a href="/demo/wp/pcd/modifications/start_from_category_id.png" target="_blank"> screenshot </a><br/>
+
+ download modified files and instructions : <a href="/demo/wp/pcd/modifications/start_from_category_id.zip" target="_blank">start_from_category_id.zip</a><br/>
+
+    </dd>
+
+
+
+
+
+    <dt>Only root categories</dt>
+
+    <dd>
+
+It will display only the first drop-down with the root categories.<br/>
+
+After selecting the first drop-down it will redirect to the category page.<br/>
+
+ download modified files and instructions: <a href="/demo/wp/pcd/modifications/only_root_categories.zip" target="_blank">only_root_categories.zip</a>
+
+    </dd>
+
+
+
+
+
+    <dt>Exclude some root categories</dt>
+
+    <dd>
+
+It will not display some categories in the first dropdown select.<br/>
+
+You will have to specify category ids in the .php file like this:<br/>
+
+  $excludeCategoryIds = array(15, 56, 12);<br/>
+
+ download modified files and instructions: <a href="/demo/wp/pcd/modifications/exclude_some_root_categories.zip" target="_blank">exclude_some_root_categories.zip</a>
+
+    </dd>
+
+
+
+
+
+    <dt>Limit number of levels</dt>
+
+    <dd>
+
+This modification will submit after selecting the second dropdown select.<br/>
+
+You can specify the number of levels in the .js file like this:<br/>
+
+    levelLimit : 2,<br/>
+
+ download modified files and instructions: <a href="/demo/wp/pcd/modifications/limit_number_of_levels.zip" target="_blank">limit_number_of_levels.zip</a>
+
+    </dd>
+
+
+
+
+
+
+
+    <dt>Only categories with in stock products</dt>
+
+    <dd>
+
+It will display only the categories that have products available for purchase (In Stock).<br/>
+
+ download modified files and instructions: <a href="/demo/wp/pcd/modifications/only_categories_with_in_stock_products.zip" target="_blank">only_categories_with_in_stock_products.zip</a>
+
+    </dd>
+
+
+
+
+
+
+
+    <dt>Display empty categories</dt>
+
+    <dd>
+
+It will display categories with no products in the dropdown selects.<br/>
+
+Instructions: <a href="/demo/wp/pcd/modifications/display_empty_categories.txt" target="_blank">display_empty_categories.txt</a><br/>
+
+    </dd>
+
+
+
+
+
+    <dt>Category sort order</dt>
+
+    <dd>
+
+It will display categories in Category order instead of ordering alphabetically by name.<br/>
+
+<a href="/demo/wp/pcd/modifications/sort_order_category_order.png" target="_blank"> screenshot </a><br/>
+
+ download modified files and instructions: <a href="/demo/wp/pcd/modifications/sort_order_category_order.zip" target="_blank">sort_order_category_order.zip</a>
+
+    </dd>
+
+
+
+
+
+    <dt>Custom dropdown titles</dt>
+
+    <dd>
+
+With this modification you can specify custom titles for the first, second and the third drop-down selects.<br/>
+
+Also it is possible to display different titles depending on the first selected category.<br/>
+
+You will have to specify the category titles in the .js file like this:<br/>
+
+  var selectTitles = ["-- select category --", "-- select sub category --", "-- select sub sub category --"];<br/>
+
+      <a href="/demo/wp/pcd/modifications/custom_dropdown_titles_for_category_id.png" target="_blank"> screenshot </a><br/>
+
+ download modified files and instructions : <a href="/demo/wp/pcd/modifications/custom_dropdown_titles_for_category_id.zip" target="_blank">custom_dropdown_titles_for_category_id.zip</a><br/>
+
+    </dd>
+
+
+
+
+
+    <dt>Disable auto search</dt>
+
+    <dd>
+
+To make it not search automatically when the last category is selected.<br/>
+
+User will have to click the Search button to see the results.<br/>
+
+Replace the line:<br/>
+
+  this.submitCategory(cId);<br/>
+
+<br/>
+
+with:<br/>
+
+ // this.submitCategory(cId);<br/>
+
+<br/>
+
+in the file:<br/>
+
+wp-content/plugins/product-category-dropdowns/view/frontend/web/main.js<br/>
+
+    </dd>
+
+
+
+
+
+
+
+    <dt>Display default selects on page load</dt>
+
+    <dd>
+
+It will make three drop-down selects always visible.<br/>
+
+      <a href="/demo/wp/pcd/modifications/display_default_dropdowns_on_page_load.png" target="_blank"> screenshot </a><br/>
+
+ download modified files and instructions : <a href="/demo/wp/pcd/modifications/display_default_dropdowns_on_page_load.zip" target="_blank">display_default_dropdowns_on_page_load.zip</a><br/>
+
+NOTE: If you need it for make and model selection check this plugin:<br/>
+
+<a href="https://wordpress.org/plugins/ymm-search/" target="_blank">https://wordpress.org/plugins/ymm-search/</a>
+
+    </dd>
+
+
+
+
+
+    <dt>Display image for selected category</dt>
+
+    <dd>
+
+It will display an image below the drop-down selects for the selected category.<br/>
+
+You will have to specify image file names for category ids in the .js file like this:<br/>
+
+        images[91] = '3157.jpeg';<br/>
+
+        images[89] = 'Car.gif';<br/>
+
+and then to upload the images in some folder on your website.<br/>
+
+      <a href="/demo/wp/pcd/modifications/display_image_for_selected_category.png" target="_blank"> screenshot </a><br/>
+
+ download modified files and instructions : <a href="/demo/wp/pcd/modifications/display_image_for_selected_category.zip" target="_blank">display_image_for_selected_category.zip</a><br/>
+
+    </dd>
+
+
+
+
+
+    <dt>Display product tags in the last dropdown</dt>
+
+    <dd>
+
+It will display product tags in the last drop-down select after selecting all categories.<br/>
+
+<a href="/demo/wp/pcd/modifications/display_product_tags_in_last_dropdown_1.png" target="_blank"> screenshot 1</a><br/>
+
+<a href="/demo/wp/pcd/modifications/display_product_tags_in_last_dropdown_2.png" target="_blank"> screenshot 2</a><br/>
+
+ download modified files and instructions: <a href="/demo/wp/pcd/modifications/display_product_tags_in_last_dropdown.zip" target="_blank">display_product_tags_in_last_dropdown.zip</a><br/>
+
+download the Product Category Dropdowns 1.0.0 plugin with all files modified: <a href="/demo/wp/pcd/modifications/pcd_1.0.0_with_product_tags_in_last_dropdown.zip" target="_blank"> pcd_1.0.0_with_product_tags_in_last_dropdown.zip </a><br/>
+
+    </dd>
+
+
+
+
+
+    <dt>Display products in the last dropdown</dt>
+
+    <dd>
+
+It will display an extra drop-down select with products for the last selected category.<br/>
+
+<a href="/demo/wp/pcd/modifications/products_in_last_dropdown.png" target="_blank"> screenshot </a><br/>
+
+You can buy this modification on the page: <a href="/pcd-products-in-last-dropdown.html" target="_blank">/pcd-products-in-last-dropdown.html</a>
+
+    </dd>
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+    <dt>Optimize get categories query</dt>
+
+    <dd>
+
+If there many categories (hundreds) you can try to apply this modification to make it load the categories for the drop-down selects easier.<br/>
+
+ download modified files and instructions: <a href="/demo/wp/pcd/modifications/optimize_get_categories_query.zip" target="_blank">optimize_get_categories_query.zip </a><br/>
+
+As an alternative you can try to use this plugin:<br/>
+
+<a href="https://wordpress.org/plugins/ymm-search/" target="_blank">https://wordpress.org/plugins/ymm-search/</a><br/>
+
+So that you will not need to use the WooCommerce categories for product searching.<br/>
+
+    </dd>
+
+-->
+
+
+
+
+
+
+
+
+
+    <dt>Products of the same category</dt>
+
+    <dd>
+
+It will display a drop-down select on the product page with other products of the same category.<br/>
+
+So that the user can switch the product.<br/>
+
+This drop-down select can be added to the product page with a shortcode.<br/>
+
+<a href="/demo/wp/pcd/modifications/products_of_the_same_category_1.png" target="_blank"> screenshot 1</a><br/>
+
+<a href="/demo/wp/pcd/modifications/products_of_the_same_category_2.png" target="_blank"> screenshot 2</a><br/>
+
+ download modified files and instructions: <a href="/demo/wp/pcd/modifications/products_of_the_same_category.zip" target="_blank">products_of_the_same_category.zip</a>
+
+    </dd>
+
+
+
+
+
+
+
+
+
+
+
+  </dl>
+
+
+</div>          
+
+     
+</body>
+</html>
