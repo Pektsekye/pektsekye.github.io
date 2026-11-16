@@ -1,0 +1,17 @@
+Replace the code:
+
+    $args = array('orderby' => 'parent', 'order' => 'DESC', 'fields' => 'all');
+
+    $ids = wc_get_products(array('return' =>'ids', 'limit' => -1));
+
+    $productCategories = wp_get_object_terms($ids, $taxonomy, $args); // only get categories that have products
+
+
+
+with:
+
+   $productCategories = get_terms($taxonomy, array('fields' => 'all', 'hide_empty' => 0, 'orderby' => 'name'));
+
+
+in the file:
+wp-content/plugins/product-category-dropdowns/Block/Selector.php
