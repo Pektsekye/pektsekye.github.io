@@ -1,0 +1,128 @@
+<br/>
+<b> Product Category Dropdowns 1.0.0</b>&nbsp;&nbsp;<br/>
+<br/>
+<br/>
+This plugin displays a drop-down select with root product categories.<br />
+After selecting the root category it displays another drop-down with sub categories and so on.<br />
+When the last sub category is selected it will redirect to the category page.<br />
+It is possible to select just one or two selects and click the search button.<br />
+It displays only the categories that have products.<br />
+<br />
+<br />
+<br />
+<a name="index"></a>
+<br />
+<b>Index:</b>
+<ul>
+<li><a href="#installation">Installation</a></li><br/>
+<li><a href="#example">An example of how to use it</a></li><br/>
+<li><a href="#shortcode">Display it with a shortcode</a></li><br/>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<br/>
+<br/>
+<br/>
+<a name="installation"></a>
+<br />
+<h3>Installation</h3>
+<b>1)</b> <i>Wordpress admin panel -&gt; Plugins -&gt; Add New</i><br/>
+Click the "Upload Plugin" button (<a href="screenshots/upload_plugin_button.png" target="_blank">screenshot</a>)<br/>
+Select the product-category-dropdowns.zip file and click the "Install Now" button (<a href="screenshots/install_plugin_button.png" target="_blank">screenshot</a>)<br/>
+<br />
+Also you can install it manually.<br />
+Unzip the product-category-dropdowns.zip archive and upload 7 new files into "wp-content/plugins" directory of WordPress:<br />
+<br /><font size="2">
+wp-content/plugins/product-category-dropdowns/Block/Selector.php<br/>
+wp-content/plugins/product-category-dropdowns/product-category-dropdowns.php<br/>
+wp-content/plugins/product-category-dropdowns/readme.txt<br/>
+wp-content/plugins/product-category-dropdowns/view/frontend/templates/selector.php<br/>
+wp-content/plugins/product-category-dropdowns/view/frontend/web/main.css<br/>
+wp-content/plugins/product-category-dropdowns/view/frontend/web/main.js<br/>
+wp-content/plugins/product-category-dropdowns/Widget/Selector.php<br/>
+</font>
+<br />
+<br />
+<b>2)</b> Activate Product Category Dropdowns plugin in:<br>
+<i>Wordpress admin panel -&gt; Plugins</i><br>
+(<a href="screenshots/activate_plugin.png" target="_blank">screenshot</a>)<br>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="example"></a>
+<h3>An example of how to use it</h3>
+<b>1)</b> Create a new product category in: <i>Wordpress admin panel -&gt; Products -&gt; Categories</i> (<a href="screenshots/new_category.png" target="_blank">screenshot</a>)<br>
+<b>2)</b> Assign your product to the category. (<a href="screenshots/assign_product_to_category.png" target="_blank">screenshot</a>)<br>
+<b>3)</b> Add the "Category Dropdowns" widget with mouse to the sidebar in: <i>Wordpress admin panel -&gt; Appearance -&gt; Widgets</i> . (<a href="screenshots/add_widget_to_sidebar.png" target="_blank">screenshot</a>)<br>
+<b>4)</b> Check the result on the front-end. The Category Dropdowns widget should be displayed on front-end in the sidebar. (<a href="screenshots/widget_on_frontend.png" target="_blank">screenshot</a>)<br>
+Your new category should be available for selection in the drop-down select.<br />
+It should display only the categories that have products.<br />  
+If the selected category has sub categories then it should display another select with the sub categories.<br />
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br>
+<br/>
+<a name="shortcode"></a>
+<h3>Display it with a shortcode</h3>
+You can insert the categories box into page content with this shortcode:<br/>
+<br/>
+[product_category_selector]<br/>
+<br/>
+Also you can insert it in a PHP template file as:<br/>
+<br/>
+&lt;?php echo do_shortcode('[product_category_selector]'); ?&gt;<br/>
+<br/>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="troubleshooting"></a>
+<h3>Troubleshooting</h3>
+<ul>
+<li>If it does not display all categories</li>
+<br> 
+Check if the categories have products.<br>
+<br>
+<br> 
+<li>If this plugin does not work</li>
+<br> 
+Try to disable other plugins.<br>
+<br>
+Try to use the default WooCommerce theme "Storefront".<br>
+<br>
+Check if the browser error console has any error messages.<br>
+<br>
+Check if the page HTML source has any error messages.<br>
+<br>
+Try to enable WordPress debug logging by setting:<br>
+define( 'WP_DEBUG', true );<br>
+define( 'WP_DEBUG_LOG', true );<br>
+<br>
+in the wp-config.php file.<br>
+<br>
+and then check if the log file:<br>
+wp-content/debug.log<br>
+<br>
+contains any errors.<br>
+<br>
+</ul>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
