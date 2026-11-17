@@ -1,0 +1,139 @@
+<br/>
+<b> Date Price Calendar 1.0.0</b>&nbsp;&nbsp;May 16 2019<br/>
+<br/>
+<br/>
+This plugin uses a Text Field product option to display a popup calendar for WooCommerce products.<br />
+So customer can select date as product option before adding the product to the shopping cart.<br />
+The store administrator can specify available date ranges on the edit product page.<br />
+He can set price for each date range or a single day and make the option required "mandatory" for selection.<br />
+So the customer will not be able to add the product the shopping cart without selecting a date.<br />
+The selected date is saved as product option. So it is displayed on the checkout pages and in the order complete emails.<br />
+<br />
+<br />
+<br />
+<a name="index">
+<b>Index:</b></a>
+<ul>
+<li><a href="#installation">Installation</a></li><br/>
+<li><a href="#example">An example of how to use it</a></li><br/>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<br/>
+<br/>
+<br/>
+<a name="installation">
+<h3>Installation</h3></a>
+<b>1)</b> <i>Wordpress admin panel -&gt; Plugins -&gt; Add New</i><br/>
+Click the "Upload Plugin" button (<a href="screenshots/upload_plugin_button.png" target="_blank">screenshot</a>)<br/>
+Select the date-price-calendar.zip file and click the "Install Now" button (<a href="screenshots/install_plugin_button.png" target="_blank">screenshot</a>)<br/>
+<br />
+Also you can install it manually.<br />
+Unzip the date-price-calendar.zip archive and upload 35 new files into "wp-content/plugins" directory of WordPress:<br />
+<br /><font size="2">
+wp-content/plugins/date-price-calendar/Block/Adminhtml/Odp/Settings.php<br/>
+wp-content/plugins/date-price-calendar/Block/Adminhtml/Product/Edit/Tab/OptionCalendar.php<br/>
+wp-content/plugins/date-price-calendar/Block/Product/OptionCalendar.php<br/>
+wp-content/plugins/date-price-calendar/Controller/Adminhtml/Odp/Settings.php<br/>
+wp-content/plugins/date-price-calendar/Controller/Adminhtml/Product.php<br/>
+wp-content/plugins/date-price-calendar/Controller/Product.php<br/>
+wp-content/plugins/date-price-calendar/date-price-calendar.php<br/>
+wp-content/plugins/date-price-calendar/Model/Dateformat.php<br/>
+wp-content/plugins/date-price-calendar/Model/Observer.php<br/>
+wp-content/plugins/date-price-calendar/Model/Option.php<br/>
+wp-content/plugins/date-price-calendar/Model/Product.php<br/>
+wp-content/plugins/date-price-calendar/Model/Range.php<br/>
+wp-content/plugins/date-price-calendar/readme.txt<br/>
+wp-content/plugins/date-price-calendar/Setup/Install.php<br/>
+wp-content/plugins/date-price-calendar/uninstall.php<br/>
+wp-content/plugins/date-price-calendar/view/adminhtml/templates/odp/settings.php<br/>
+wp-content/plugins/date-price-calendar/view/adminhtml/templates/product/edit/tab/optioncalendar.php<br/>
+wp-content/plugins/date-price-calendar/view/adminhtml/web/product/edit/main.css<br/>
+wp-content/plugins/date-price-calendar/view/adminhtml/web/product/edit/main.js<br/>
+wp-content/plugins/date-price-calendar/view/adminhtml/web/product/edit/text_field_option.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/templates/product/optioncalendar.php<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/calendar.gif<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-bg_flat_75_ffffff_40x100.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-bg_glass_55_fbf9ee_1x400.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-bg_glass_65_ffffff_1x400.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-bg_glass_75_dadada_1x400.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-bg_glass_75_e6e6e6_1x400.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-bg_highlight-soft_75_cccccc_1x100.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-icons_222222_256x240.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-icons_2e83ff_256x240.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-icons_454545_256x240.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/images/ui-icons_888888_256x240.png<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/main.css<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/main.js<br/>
+wp-content/plugins/date-price-calendar/view/frontend/web/odp-ui-datepicker.css<br/>
+</font>
+<br />
+<br />
+<b>2)</b> Activate the Date Price Calendar plugin in:<br>
+<i>Wordpress admin panel -&gt; Plugins</i><br>
+(<a href="screenshots/activate_plugin.png" target="_blank">screenshot</a>)<br>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="example">
+<h3>An example of how to use it</h3></a>
+<b>1)</b> Open any Simple product in: <i>Wordpress admin panel -&gt; Products </i> (<a href="screenshots/products.png" target="_blank">screenshot</a>)<br>
+<b>2)</b> In the Custom Options section click the Add Option button to add a new option. (<a href="screenshots/add_option_button.png" target="_blank">screenshot</a>)<br>
+&nbsp;&nbsp;&nbsp;Note: if there is no "Custom Options" section you should install and enable the <a href="https://wordpress.org/plugins/product-options-for-woocommerce/" target="_blank">Product Options</a> plugin.<br>
+<b>3)</b> Set option title "Choose Date" and select option type Field. (<a href="screenshots/option_type_field.png" target="_blank">screenshot</a>)<br>
+<b>4)</b> In the Calendar Option section select your "Choose Date" text field option. (<a href="screenshots/select_text_field_option.png" target="_blank">screenshot</a>)<br>
+&nbsp;&nbsp;&nbsp;Note: if there is no "Calendar Option" section it means that this plugin was not successfully installed and enabled. Check the <a href="#troubleshooting">Troubleshooting</a> instructions in this readme file.<br>
+<b>5)</b> Click the Add Range button to add new date ranges. (<a href="screenshots/add_range_button.png" target="_blank">screenshot</a>)<br>
+<b>6)</b> Set dates and price for your ranges. (<a href="screenshots/create_new_ranges.png" target="_blank">screenshot</a>)<br>
+<b>7)</b> Click the Update button to save the product. (<a href="screenshots/update_product_button.png" target="_blank">screenshot</a>)<br />
+<b>8)</b> Check the result on front-end product view page. The calendar popup should appear if you click on the "Choose Date" text field option. (<a href="screenshots/frontend_product_page.png" target="_blank">screenshot</a>)<br />
+Only the specified date ranges should be available for selection. And if you select a date product price should change.<br />
+If it does not work this way check the <a href="#troubleshooting">Troubleshooting</a> section in this readme file.<br />
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br>
+<br/>
+<a name="troubleshooting">
+<h3>Troubleshooting</h3></a>
+<ul>
+<li>If this plugin does not work</li>
+<br> 
+Try to disable other plugins.<br>
+<br>
+Try to use the default WooCommerce theme "Storefront".<br>
+<br>
+Check if the browser error console has any error messages.<br>
+<br>
+Check if the page HTML source has any error messages.<br>
+<br>
+Try to enable WordPress debug logging by setting:<br>
+define( 'WP_DEBUG', true );<br>
+define( 'WP_DEBUG_LOG', true );<br>
+<br>
+in the wp-config.php file.<br>
+<br>
+and then check if the log file:<br>
+wp-content/debug.log<br>
+<br>
+contains any errors.<br>
+<br>
+</ul>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
