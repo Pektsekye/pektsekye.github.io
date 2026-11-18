@@ -1,0 +1,146 @@
+<br/>
+<b>Product Options 1.0.0</b>&nbsp;&nbsp;Mar 2 2021<br/>
+<br/>
+<br/>
+This plugin adds selectable options to WooCommerce products.<br>
+So customer can select size, color and specify custom text before adding a product into the shopping cart.<br>
+The store administrator can create product options on the edit product page.<br>
+He can set price for each option value and make options required "mandatory" for selection.<br>
+So the customer will not be able to add the product the shopping cart without selecting the required options.<br>
+<br />
+<br />
+<br />
+<br />
+<a name="index">
+<b>Index:</b></a>
+<ul>
+<li><a href="#installation">Installation</a></li><br/>
+<li><a href="#example">An example of how to use it</a></li><br/>
+<li><a href="#limitations">Limitations</a></li><br/>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<br/>
+<br/>
+<br/>
+<a name="installation">
+<h3>Installation</h3></a>
+<b>1)</b> <i>Wordpress admin panel -&gt; Plugins -&gt; Add New</i><br/>
+Click the "Upload Plugin" button (<a href="screenshots/upload_plugin_button.png" target="_blank">screenshot</a>)<br/>
+Select the product-options-for-woocommerce.zip file and click the "Install Now" button (<a href="screenshots/install_plugin_button.png" target="_blank">screenshot</a>)<br/>
+<br />
+Also you can install it manually.<br />
+Unzip the product-options-for-woocommerce.zip archive and upload 19 new files into "wp-content/plugins" directory of WordPress:<br />
+<br /><font size="2">
+wp-content/plugins/product-options-for-woocommerce/Block/Adminhtml/Product/Edit/Tab/CustomOptions.php<br/>
+wp-content/plugins/product-options-for-woocommerce/Block/Adminhtml/Product/Edit/Tab/CustomOptions/Options.php<br/>
+wp-content/plugins/product-options-for-woocommerce/Block/Product/Options.php<br/>
+wp-content/plugins/product-options-for-woocommerce/Controller/Product.php<br/>
+wp-content/plugins/product-options-for-woocommerce/Model/Observer.php<br/>
+wp-content/plugins/product-options-for-woocommerce/Model/Option.php<br/>
+wp-content/plugins/product-options-for-woocommerce/Model/Option/Value.php<br/>
+wp-content/plugins/product-options-for-woocommerce/product-options-for-woocommerce.php<br/>
+wp-content/plugins/product-options-for-woocommerce/readme.txt<br/>
+wp-content/plugins/product-options-for-woocommerce/Setup/Install.php<br/>
+wp-content/plugins/product-options-for-woocommerce/uninstall.php<br/>
+wp-content/plugins/product-options-for-woocommerce/view/adminhtml/templates/product/edit/tab/customoptions.php<br/>
+wp-content/plugins/product-options-for-woocommerce/view/adminhtml/templates/product/edit/tab/customoptions/options.php<br/>
+wp-content/plugins/product-options-for-woocommerce/view/adminhtml/web/product/edit/main.css<br/>
+wp-content/plugins/product-options-for-woocommerce/view/adminhtml/web/product/edit/main.js<br/>
+wp-content/plugins/product-options-for-woocommerce/view/adminhtml/web/product/edit/styles-old.css<br/>
+wp-content/plugins/product-options-for-woocommerce/view/frontend/templates/product/options.php<br/>
+wp-content/plugins/product-options-for-woocommerce/view/frontend/web/product/main.css<br/>
+wp-content/plugins/product-options-for-woocommerce/view/frontend/web/product/main.js<br/>
+</font>
+<br />
+<br />
+<b>2)</b> Activate PartFinder plugin in:<br>
+<i>Wordpress admin panel -&gt; Plugins</i><br>
+(<a href="screenshots/activate_plugin.png" target="_blank">screenshot</a>)<br>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="example">
+<h3>An example of how to use it</h3></a>
+<b>1)</b> Open any Simple product in: <i>Wordpress admin panel -&gt; Products </i> (<a href="screenshots/products.png" target="_blank">screenshot</a>)<br>
+<b>2)</b> Open the Custom Option section. (<a href="screenshots/custon_options_section.png" target="_blank">screenshot</a>)<br>
+<b>3)</b> Click the Add Option button to add a new option. (<a href="screenshots/add_option_button.png" target="_blank">screenshot</a>)<br>
+<b>4)</b> Select option type Drop-down. (<a href="screenshots/option_type_dropdown.png" target="_blank">screenshot</a>)<br>
+<b>5)</b> Click the Add New Row button to add a new option value. (<a href="screenshots/add_new_row_button.png" target="_blank">screenshot</a>)<br>
+<b>6)</b> Fill the option title and option value titles fields. (<a href="screenshots/option_title_field.png" target="_blank">screenshot</a>)<br>
+<b>7) </b> Click the Update button to save the product. (<a href="screenshots/update_product_button.png" target="_blank">screenshot</a>)<br />
+<b>8) </b> Check the result on front-end product view page. (<a href="screenshots/frontend_product_page.png" target="_blank">screenshot</a>)<br />
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="limitations">
+<h3>Limitations</h3></a>
+The current version of this extension supports only Simple products:<br>
+ (<a href="screenshots/simple_product.png" target="_blank">screenshot</a>)<br>
+<br>
+Also it uses JavaScript to change product price so it is very dependent on theme's HTML<br> 
+<br>
+If this plugin cannot find and update the price on the frontend product view page when you select a product option you should adjust the line:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;this.priceDiv = $('#product-'+ this.productId +' .summary .woocommerce-Price-amount');<br>
+<br>
+in the file:<br>
+wp-content/plugins/product-options-for-woocommerce/view/frontend/web/product/main.js<br>
+<br>
+<br>      
+<a href="#index">Back to the index</a>
+<br>
+<br>
+<br/>
+<a name="troubleshooting">
+<h3>Troubleshooting</h3></a>
+<ul>
+<li>If the product price is not updated when a product option is selected on front-end:</li><br>
+Adjust CSS selector:<br>
+this.priceDiv = $('#product-'+ this.productId +' .summary .woocommerce-Price-amount');<br>
+<br>
+in the file:<br>
+wp-content/plugins/product-options-for-woocommerce/view/frontend/web/product/main.js<br>
+<br>
+<li>If this plugin does not work</li>
+<br> 
+Try to disable other plugins.<br>
+<br>
+Try to use the default WooCommerce theme "Storefront".<br>
+<a href="https://wordpress.org/themes/storefront/" target="_blank">https://wordpress.org/themes/storefront/</a><br>
+<br>
+Check if the browser error console has any error messages.<br>
+<br>
+Check if the page HTML source has any error messages.<br>
+<br>
+Try to enable WordPress debug logging by setting:<br>
+define( 'WP_DEBUG', true );<br>
+define( 'WP_DEBUG_LOG', true );<br>
+<br>
+in the wp-config.php file.<br>
+<br>
+and then check if the log file:<br>
+wp-content/debug.log<br>
+<br>
+contains any errors.<br>
+<br>
+</ul>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
