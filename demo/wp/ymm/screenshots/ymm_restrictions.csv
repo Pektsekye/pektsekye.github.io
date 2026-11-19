@@ -1,0 +1,10 @@
+product_sku, make, model, year_from, year_to
+8,Daihatsu,Altis,2000,2008
+9,bmw,,0,0
+9,Lexus,ES300,1992,1997
+9,Lexus,GS300,1997,1999
+9,Lexus,RX300,1999,2003
+10,bmw,,0,0
+11,Toyota,Camry,1993,2000
+12,Toyota,Carina,1993,1998
+13,BMW,X5,2004,2008

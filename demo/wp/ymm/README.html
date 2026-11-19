@@ -1,0 +1,327 @@
+<br/>
+<b>Year Make Model Search 1.0.12</b>&nbsp;&nbsp;<br/>
+<br/>
+<br/>
+With this plugin store visitor can search for a product (usually a replacement part) that applies to specific vehicle.<br />
+For example if the product is a car bulb the visitor can select car make and model in the YMM selectors box. <br />
+Then he will be redirected to the search results page where all matching products will be listed.<br />
+<br />
+<br />
+<br />
+<a name="index"></a>
+<br />
+<b>Index:</b>
+<ul>
+<li><a href="#installation">Installation</a></li><br/>
+<li><a href="#in_content">Display it with a shortcode</a></li><br/>
+<li><a href="#import_restrictions">Import restrictions</a></li><br/>
+<li><a href="#export_restrictions">Export restrictions</a></li><br/>
+<li><a href="#restriction_format">Restriction format</a></li><br/>
+<li><a href="#configuration">Configuration</a></li><br/>
+<li><a href="#disable_garage">Disable the Garage feature</a></li><br/>
+<li><a href="#translate">Translate</a></li><br/>
+<li><a href="#troubleshooting">Troubleshooting</a></li><br/>
+</ul>
+<br/>
+<br/>
+<br/>
+<a name="installation">
+<h3>Installation</h3></a>
+<b>1)</b> <i>Wordpress dashboard -&gt; Plugins -&gt; Add New</i><br/>
+Click the "Upload Plugin" button (<a href="screenshots/upload_plugin_button.png" target="_blank">screenshot</a>)<br/>
+Select the ymm.zip file and click the "Install Now" button (<a href="screenshots/install_plugin_button.png" target="_blank">screenshot</a>)<br/>
+<br />
+Also you can install it manually.<br />
+Unzip the ymm.zip archive and upload 28 new files into "wp-content/plugins" directory of WordPress:<br />
+<br /><font size="2">
+wp-content/plugins/ymm-search/Block/Adminhtml/Product/Edit/Restriction.php<br/>
+wp-content/plugins/ymm-search/Block/Adminhtml/Ymm/Selector.php<br/>
+wp-content/plugins/ymm-search/Block/Product/View/Tabs/Restriction.php<br/>
+wp-content/plugins/ymm-search/Block/Selector.php<br/>
+wp-content/plugins/ymm-search/Controller/Adminhtml/Ymm/Selector.php<br/>
+wp-content/plugins/ymm-search/Controller/Product.php<br/>
+wp-content/plugins/ymm-search/Controller/Selector.php<br/>
+wp-content/plugins/ymm-search/etc/config.php<br/>
+wp-content/plugins/ymm-search/i18n/languages/ymm-search.pot<br/>
+wp-content/plugins/ymm-search/Model/Db/CsvImportHandler.php<br/>
+wp-content/plugins/ymm-search/Model/Db.php<br/>
+wp-content/plugins/ymm-search/readme.txt<br/>
+wp-content/plugins/ymm-search/Setup/Install.php<br/>
+wp-content/plugins/ymm-search/uninstall.php<br/>
+wp-content/plugins/ymm-search/view/adminhtml/templates/ymm/selector.php<br/>
+wp-content/plugins/ymm-search/view/adminhtml/web/product/edit/main.css<br/>
+wp-content/plugins/ymm-search/view/adminhtml/web/product/edit/main.js<br/>
+wp-content/plugins/ymm-search/view/adminhtml/web/ymm/main.css<br/>
+wp-content/plugins/ymm-search/view/frontend/templates/horizontal_selector.php<br/>
+wp-content/plugins/ymm-search/view/frontend/templates/product/view/tabs/restriction.php<br/>
+wp-content/plugins/ymm-search/view/frontend/templates/selector.php<br/>
+wp-content/plugins/ymm-search/view/frontend/web/main.css<br/>
+wp-content/plugins/ymm-search/view/frontend/web/main.js<br/>
+wp-content/plugins/ymm-search/view/frontend/web/product/restriction.css<br/>
+wp-content/plugins/ymm-search/Widget/HorizontalSelector.php<br/>
+wp-content/plugins/ymm-search/Widget/Selector.php<br/>
+wp-content/plugins/ymm-search/ymm-search.php<br/>
+wp-content/plugins/ymm-search/ymm_ajax.php<br/> 
+</font>
+<br />
+<br />
+<b>2)</b> Activate YMM plugin in:<br>
+<i>Wordpress dashboard -&gt; Plugins</i><br>
+(<a href="screenshots/activate_plugin.png" target="_blank">screenshot</a>)<br>
+<br>
+<b>3) </b>Add it with a Shortcode Block (if your theme supports blocks):<br>
+<i>Wordpress dashboard -&gt; Appearance -&gt; Editor -&gt; select template -&gt; select page</i><br />
+Add a Shortcode block with the following shortcode:<br />
+<br />
+&nbsp;&nbsp;[ymm_selector template="horizontal_selector.php"]<br />
+<br />
+<br />
+(<a href="screenshots/shortcode_block.png" target="_blank">screenshot</a>)<br />
+<br />
+Or add it as a widget (if your theme supports widgets):<br />
+<i>Wordpress dashboard -&gt; Appearance -&gt; Widgets</i><br />
+(<a href="screenshots/add_widget_to_sidebar.png" target="_blank">screenshot</a>)<br />
+<br>
+<b>4) </b>Add restriction to a product:<br>
+Go to <i>Wordpress dashboard -&gt; Products</i><br>
+Select any product or create a new one.<br>
+In the YMM tab of the Product Data section add a restriction like:<br />
+<br />
+Acura, CL, 2003, 2005<br />
+Jeep, Cherokee, 2001, 2002<br />
+<br />
+(<a href="screenshots/product_restriction.png" target="_blank">screenshot</a>)<br />
+<br />
+NOTE: For more information read the <a href="#restriction_format">Restriction format</a> section.<br>
+<br />
+Click the "Update" button to save the product.<br />
+<br />
+<b>5) </b>Check the result on front-end:<br>
+The YMM search box should appear on the sidebar of your website.<br />
+You should be able to select Acura CL Base 2003 in drop-down selects and find the product with the "Acura CL 2003" restriction.<br />
+(<a href="screenshots/search_box_on_frontend.png" target="_blank">screenshot</a>)<br />
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="in_content">
+<h3>Display it with a shortcode</h3></a>
+You can insert the YMM search box into the page content with this shortcode:<br/>
+<br/>
+&nbsp;&nbsp;[ymm_selector template="horizontal_selector.php"]<br/>
+<br/>
+<br/>
+(<a href="screenshots/shortcode.png" target="_blank">screenshot</a>)<br />
+<br />
+Or with a Shortcode block (if your theme supports blocks):<br />
+(<a href="screenshots/shortcode_block.png" target="_blank">screenshot 2</a>)
+<br />
+<br/>
+Result on the front-end: (<a href="screenshots/search_box_in_content.png" target="_blank">screenshot</a>)<br />
+<br/>
+<br/>Shortcode parameters:<br/>
+<br/>
+If you need a horizontal selector box:<br/>
+[ymm_selector template="horizontal_selector.php"]<br/>
+<br/>
+To enable the "garage" feature:<br/>
+[ymm_selector garage=1]<br/>
+<br/>
+To enable the "remove from garage" link:<br/>
+[ymm_selector remove_from_garage_enabled=1]<br/>
+<br/>
+To disable the "filter category page" mode:<br/>
+[ymm_selector filter_category_page=0]<br/>
+<br/>
+<br/>
+Also you can insert it in a PHP template file as:<br/>
+<br/>
+&lt;?php echo do_shortcode('[ymm_selector template="horizontal_selector.php"]'); ?&gt;<br/>
+<br/>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="import_restrictions">
+<h3>Import Product Restrictions</h3></a>
+<b>1)</b> Prepare all the data with the Excel program.<br/>
+The first row in the .csv file should contain column names:<br/>
+"product_sku","make","model","year_from","year_to"<br/>
+<br/>
+If a product does not have a SKU use product ID number.<br/>
+<br/>
+Check a <a href="screenshots/ymm_restrictions.csv" target="_blank">sample import file</a>.<br>
+<br/>
+<b>2)</b> Go to <i>Wordpress dashboard -&gt; YMM Search -&gt; Import YMM Data</i><br>
+<b>3)</b> Choose your .csv file and click the "Import CSV" button.<br/>
+(<a href="screenshots/import_restrictions.png" target="_blank">screenshot</a>)<br/>
+<br/>
+<br>
+<a href="#index">Back to the index</a>
+<br/>
+<br/>
+<br/>
+<a name="export_restrictions">
+<h3>Export Product Restrictions</h3></a>
+<b>1)</b> Go to <i>Wordpress dashboard -&gt; YMM Search -&gt; Export YMM Data</i><br>
+<b>2)</b> Click the "Export CSV" button and download the .csv file with your web browser.<br/>
+(<a href="screenshots/export_restrictions.png" target="_blank">screenshot</a>)<br/>
+<br/>
+<br>
+<a href="#index">Back to the index</a>
+<br/>
+<br/>
+<br/>
+<a name="restriction_format">
+<h3>Product Restriction Format</h3></a>
+Restriction means what a user selects on front-end.<br>
+If the user selects "Acura Legend SE 1995" then all products with restriction "Acura, Legend SE, 1995, 1994" will be found.<br>
+<br>
+Restriction can not be lower case like:<br>
+acura legend se 1995<br>
+<br>
+because this extension displays restriction values as drop-down options on fron-end.<br>
+<br>
+Year From and Year To values should always have four digits like 1999<br>
+<br>
+Commas in the restriction is mandatory. Each new restriction phrase should go on a new line the same as in a .csv file.<br>
+All values are optional.<br>
+So instead of complete restriction "Acura, Legend SE, 1995, 1996" it is possible to use:<br>
+<br>
+Acura, Legend SE,,<br>
+<br>
+or:<br>
+Acura,,1995,<br>
+<br>
+or:<br>
+Acura,,,<br>
+<br>
+The restriction "Acura,,," means that the product will be displayed for all models and years of the Acura make.<br>
+The restriction "Acura, Legend SE,," means that the product will be displayed for all years of the Acura Legend SE.<br>
+<br>
+The restriction "Acura, Legend SE, 1992, 1995" means that the product will be displayed for "Acura Legend SE" with any of the years: 1992, 1993, 1994, 1995.<br>
+<br>
+It is possible to use restriction with empty values (just three commas) like ",,," to make a product "universal"<br>
+This product will be displayed for any make and model selected.<br>
+<br>
+One product can have multiple restrictions but each should be on a new line:<br>
+<br>
+Jeep,,,<br>
+Ford,,,<br>
+Acura, CL, 2003, 2005<br>
+Acura, Integra GS,,<br>
+Acura, Legend Base, 1986, 1992<br>
+Honda, Civic LX,,<br>
+Honda, CR-V EX, 1999,,<br>
+Honda, Odyssey Cargo, 1999, 2002<br>
+Honda, Passport EX,,<br>
+Toyota, Celica GT, 1992, 1995<br>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br/>
+<br/>
+<br/>
+<a name="configuration">
+<h3>Configuration</h3></a>
+You can disable the vehicle fitment tab, category drop-downs and search text field in:<br>
+<i>WordPress dashboard &gt; YMM Search &gt; Configuration:</i><br>
+(<a href="screenshots/configuration.png" target="_blank">screenshot</a>)<br/>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br/>
+<br/>
+<br/>
+<a name="disable_garage">
+<h3>Disable the Garage feature</h3></a>
+You can disable the "Garage" feature in:<br>
+<i>WordPress dashboard &gt; Appearance &gt; Widgets &gt; your YMM widget &gt; Enable Garage feature</i><br>
+(<a href="screenshots/disable_garage.png" target="_blank">screenshot</a>)<br/>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br/>
+<br/>
+<br/>
+<a name="translate">
+<h3>Translate</h3></a>
+<b>1)</b> Open the .pot template file:<br>
+<i>wp-content/plugins/ymm-search/i18n/languages/ymm-search.pot</i><br>
+<br>
+with some text editing program.<br>
+<br>
+<b>2)</b> Translate strings in it. Example:<br>
+<font size="2">
+msgid "(What is an API key?)"<br>
+msgstr "(Ce este o cheie API?)"<br></font>
+<br>
+<b>3)</b> Save translated file as .po file on your computer.<br>
+<br>
+<b>4)</b> Convert the .po file into a .mo file with some program like <a href="http://www.poedit.net/" target="_blank">PoEdit</a>, <a href="https://wordpress.org/plugins/loco-translate/" target="_blank">Loco Translate</a> plugin or online service (google for "convert .po to .mo").<br>
+<br>
+<b>5)</b> Save the .mo file as <b>ymm-search-YOURLOCALECODE.mo</b> into the ymm-search/i18n/languages directory.<br>
+Example for Romaninan language:<br>
+<i>wp-content/plugins/ymm-search/i18n/languages/ymm-search-ro_RO.mo</i><br>
+<br>
+<b>6)</b> Enable your language in WordPress dashboard: <br>
+<i>Dashboard &gt; Settings &gt; General</i><br>
+(<a href="screenshots/wordpress_language.png" target="_blank">screenshot</a>)<br/>
+<br/>
+<br>
+If your translation is ready you can share it with other WordPress users on <a href="https://translate.wordpress.org/projects/wp-plugins/ymm-search" target="_blank">translate.wordpress.org</a><br/>
+When you translation is approved on translate.wordpress.org the files will be automatically downloaded into wp-content/languages/plugins directory when WordPress language is changed.<br/>
+Example of auto-downloaded files for Romanian language:<br><i>
+wp-content/languages/plugins/ymm-search-ro_RO.mo<br>
+wp-content/languages/plugins/ymm-search-ro_RO.po<br></i>
+<br>
+The translations from the plugin directory:<br>
+<i>wp-content/plugins/ymm-search/i18n/languages/ymm-search-ro_RO.mo</i><br>
+override the auto-downloaded translations.<br> 
+<br>
+<br/>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br>
+<br/>
+<a name="troubleshooting">
+<h3>Troubleshooting</h3></a>
+<ul>
+<li>If this plugin does not work</li>
+<br> 
+Try to disable other plugins.<br>
+<br>
+Try to use the default WooCommerce theme "Storefront".<br>
+<br>
+Check if the browser error console has any error messages.<br>
+<br>
+Check if the page HTML source has any error messages.<br>
+<br>
+Try to enable WordPress debug logging by setting:<br>
+define( 'WP_DEBUG', true );<br>
+define( 'WP_DEBUG_LOG', true );<br>
+<br>
+in the wp-config.php file.<br>
+<br>
+and then check if the log file:<br>
+wp-content/debug.log<br>
+<br>
+contains any errors.<br>
+<br>
+</ul>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br/>
+<br/>
+<br/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
