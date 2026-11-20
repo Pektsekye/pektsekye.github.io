@@ -1,0 +1,216 @@
+<style>
+.code {
+  padding: 10px;
+  width:max-content;
+  background-color:#EEEEEE;
+  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+}
+.section {
+  padding: 5px 0 0 10px;
+}
+</style>
+<br/>
+<b>Notify Odoo with "Odoo API" modification</b><br/>
+<br/>
+<br/>
+This modification adds features for sending woocommerce orders and customers via odoo API.<br />
+<br />
+<br />
+<br />
+<a name="index"></a>
+<br />
+<b>Index:</b>
+<ul>
+<li><a href="#installation">Installation</a></li><br/>
+<li><a href="#example">An example of how to use it</a></li><br/>
+<li><a href="#debug">Debugging</a></li><br/>
+<li><a href="#trouble_shooting">Trouble shooting</a></li><br/>
+</ul>
+<br/>
+<br/>
+<br/>
+<a name="installation"></a>
+<br />
+<h3>Installation</h3>
+<b>1)</b> Install it as a wordpress plugin.<br>
+<br>
+<b>2)</b> Generate odoo API key.<br>
+<div class="section">
+  In the odoo admin panel click on the administrator name at the top right corner of the page and select "Preferences". (<a href="screenshots/odoo_administrator_preferences.png" target="_blank">screenshot</a>)<br>
+  In the "Account Security" tab click on "NEW API KEY". (<a href="screenshots/new_api_key_link.png" target="_blank">screenshot</a>)<br>
+  Specify any name for your key like "api_key_for_woocommerce" and click the "Generate Key" button. (<a href="screenshots/generate_key.png" target="_blank">screenshot</a>)<br>
+  Save the generated key somewhere. Odoo will not display it for you again.<br>
+  <br>
+  NOTE: the key should be generated for the administrator. To allow administrator access to the odoo system.<br>
+  &nbsp;&nbsp;If you generate it for some other odoo user then this plugin will not be able to create odoo orders.<br>
+</div>
+<br>
+<b>3)</b> Specify access details.<br>
+<div class="section">
+ <b>3.1</b> Connect to your website via FTP.<br>
+ <div class="section"> 
+   (if you have no FTP access you can update the file with wordpress Plugin File Editor:<br>
+   &nbsp;Wordress dashboard -> Plugins -> Plugin File Editor (<a href="screenshots/plugin_file_editor.png" target="_blank">screenshot</a>)<br>
+   &nbsp;Just don't forget to disable plugin before editing.)<br>
+  </div>
+  <br>
+ <b>3.2</b> Specify odoo URL, user, API key and the odoo database name:<br>
+ <div class="section">
+  <div class="code">
+    protected $_odoo_url = 'http://127.0.0.1:8069';<br>
+    <br>  
+    protected $_odoo_user = 'admin';<br>
+    protected $_odoo_api_key = '032267a7bc585234027f833bed701eb230ffec05';<br>
+    protected $_odoo_db = 'odoo16';<br>     
+  </div>
+  <br>
+  in the file:<br>
+  <i>wp-content/plugins/notify-odoo/Model/OdooApi.php</i><br>
+  <br> 
+  NOTE: for a real website use secure protocol "https". For localhost you can use "http" ex.: http://127.0.0.1:8069<br>
+ </div>
+ <br>
+</div>  
+<b>4)</b> Set up server cron to run wordpress "wp-cron.php" script every 5 minutes.<br>
+<div class="section">
+  <b>4.1</b> Go to your hosting cpanel -&gt; Cron Job Management (<a href="screenshots/cron_job_management.png" target="_blank">screenshot</a>)<br>
+  <div class="section">
+    And set this linux cron command (if your website is hosted on a linux server): <br>
+    <div class="code">
+    */5 * * * * wget -q -O - 'https://yourwebsite.com/wp-cron.php?doing_wp_cron' >/dev/null 2>&1<br>
+    </div>
+       (<a href="screenshots/cron_job_command.png" target="_blank">screenshot</a>)<br>
+       <br>
+       Replace "yourwebsite.com" with your website domain.<br>
+       <br>
+      If you cannot set up the server cron ask your hosting support to do it.<br>
+      Also you can use some online cron service instead of the server cron.<br>
+    <br>
+  </div>  
+  <b>4.2</b> Disable wordpress web cron by setting:<br>
+  <div class="section">  
+    <div class="code">
+      define('DISABLE_WP_CRON', true);<br>
+    </div>
+    <br>
+    in the file:<br>
+    wp-config.php<br>
+    <br>
+    (Wordpress web cron is not reliable. It runs only when someone visits your website. It is why we disable it and enable the server cron instead of it.)<br> 
+  </div>      
+  <br>
+  <br>
+</div>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="example"></a>
+<h3>An example of how to use it</h3>
+<b>1)</b> Go to <i>WordPress dashboard -&gt; Notify Odoo -&gt; Odoo API </i><br>
+<div class="section">
+  And click the "Add last order to queue" button. (<a href="screenshots/add_last_order_to_queue_button.png" target="_blank">screenshot</a>)<br>
+  The order should appear in the queue. (<a href="screenshots/new_order_in_queue.png" target="_blank">screenshot</a>)<br> 
+  Or it will appear in the Queue history as last processed. (<a href="screenshots/last_processed.png" target="_blank">screenshot</a>)<br>
+  <br>
+  NOTE: if there are no woocommerce orders. You should create one.<br> 
+  Then if the "Notify About New Order" checkbox is checked (<a href="screenshots/notify_about_new_order_checkbox.png" target="_blank">screenshot</a>) the new created order should appear in the queue.<br> 
+</div>
+<br>
+<b>2)</b> Wait for 1-5 minutes. Then reload the page. If cron job is set up, the order should be processed and appear as last processed. (<a href="screenshots/last_processed.png" target="_blank">screenshot</a>)<br>
+<div class="section">
+Processed means that it was summited to the odoo server.<br>
+The last processed record contains the result of the transfer. (<a href="screenshots/last_processed_result.png" target="_blank">screenshot</a>) <br>
+The succesful result means that the new order was successfully transfered to the odoo server. So you should go to the odoo admin panel and try to find the new order there. (<a href="screenshots/new_odoo_order.png" target="_blank">screenshot</a>)<br>
+<br>
+A failed transfer means that there was a problem during submitting the order. You should check the error log file at the botton of the page for more details. (<a href="screenshots/download_error_log_file.png" target="_blank">screenshot</a>) <br>
+Also you can resubmit the order with debug info to get more details of what was the problem during submitting the last order. (<a href="screenshots/send_with_debug_info.png" target="_blank">screenshot 1</a>, <a href="screenshots/debug_info.png" target="_blank">screenshot 2</a>) <br>
+</div>
+<br>
+<br>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="debug"></a>
+<h3>Debugging</h3>
+<b>To debug the server cron job:</b><br>
+<div class="section">
+  Go to <i>WordPress dashboard -&gt; Notify Odoo -&gt; Odoo API </i><br>
+  And click the "Add last order to queue" button. (<a href="screenshots/add_last_order_to_queue_button.png" target="_blank">screenshot</a>)<br>
+  <br>
+  Wait for five minutes. The order should appear in the last processed. (<a href="screenshots/last_processed.png" target="_blank">screenshot</a>)<br>
+  <br>  
+  If the order does not appear in the last processed in five minutes.<br> 
+  Try to emulate cron job by accessing the wp-cron.php file with your browser:<br> 
+  http://yourwebsite.com/wp-cron.php<br>
+  <br>
+  This page does not display anything.<br>
+  But the browser can display the loading state. So you should not interrupt the page loading process and wait.<br>
+  Then check if the order appears as last processed.<br>
+  <br>
+  NOTE 1: Don't access the wp-cron.php script more frequently than 1 minute.<br>
+  The action function of this plugin is scheduled to be executed in one minute interval.<br>
+  So if you access it more often it will not start.<br>
+  <br>
+  NOTE 2: Other way to check if server cron is set up is to check when the cron scheduled action was last executed. (<a href="screenshots/cron_action_last_executed.png" target="_blank">screenshot</a>)<br>
+  If the server cron is set up, it should execute the scheduled action every 5 minutes.<br>  
+  </div>
+<br>
+<b>To debug connection:</b><br>
+<div class="section">
+  Go to <i>WordPress dashboard -&gt; Notify Odoo -&gt; Odoo API </i><br>
+  And click the "Send last order with debug info" or "Send last customer with debug info" button. (<a href="screenshots/send_last_with_debug_info_buttons.png" target="_blank">screenshot</a>)<br>
+  <br>
+  In the processing should start in a new browser tab and then display the result.<br>
+  <br>
+  Check the output. If it was able to get the odoo version, it means that the odoo URL is correct. (<a href="screenshots/odoo_version_in_debug_info.png" target="_blank">screenshot </a>)<br> 
+  <br>
+  So you should check the odoo user and the API key in the file:<br>
+  <i>wp-content/plugins/notify-odoo/Model/OdooApi.php</i><br>
+   (<a href="screenshots/connection_details_in_OdooApi_php_file.png" target="_blank">screenshot </a>)<br>
+  <br>
+  Wrong database name will produce long error message. With a fatal error at the end.<br>
+  Example:<br>
+  <i>FATAL: database "_odoo17" does not exist</i><br>
+   (<a href="screenshots/wrong_database_error.png" target="_blank">screenshot </a>)<br>
+</div>
+<br>
+<br>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br>
+<br>
+<a name="trouble_shooting"></a>
+<h3>Trouble shooting:</h3>
+<b>Error: Object sale.order doesn't exist</b><br/>
+<div class="section">
+  Solution:<br/>
+  <div class="section">
+    Activate the "Odoo Sales" (sale_management) module in Odoo admin panel -> Apps. (<a href="screenshots/sales_module.png" target="_blank">screenshot</a>)<br/>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br/>
+<br>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

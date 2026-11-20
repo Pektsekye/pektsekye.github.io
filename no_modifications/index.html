@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title> Notify Odoo modifications </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="List of modifications for the Notify Odoo plugin." />
+<meta name="keywords" content="Notify Odoo, modifications, WooCommerce, WordPress plugin" />
+<meta name="robots" content="INDEX,FOLLOW" />
+<link rel="stylesheet" type="text/css" href="../modifications.css" media="all" />
+</head>
+<body class=" cms-page-view cms-no-modifications">
+
+                <!-- start content -->
+                    <div>
+
+  <br/>
+
+  <h3>Modifications for the <a href="https://wordpress.org/plugins/notify-odoo/" target="_blank">Notify Odoo</a> WordPress plugin:</h3>
+
+<br/>
+
+
+  <br/>
+
+  <dl class="table-display">
+
+
+
+
+
+    <dt>Odoo API</dt>
+
+    <dd>
+
+This modification will send new woocommerce orders via odoo API.<br/>
+
+So that there is no need to install extra odoo modules and make it possible to use this plugin for Odoo Online.<br/>
+
+<br/>
+
+This modification requires:<br/>
+
+- server cron job. (ask your hosting support of how to set it up. Or use some online cron service.)<br/>
+
+- odoo API KEY. (you can generate it in the odoo admin panel)<br/>
+
+- editing of PHP files. (the login details should be specified directly in a .php file. So you should know how to edit PHP files. Or ask someone who can do it for you.)<br/>
+
+<br/>
+
+This modification uses "openerp-api" script by Simbigo to connect to odoo API:<br/>
+
+<a href="https://github.com/simbigo/openerp-api" target="_blank">https://github.com/simbigo/openerp-api</a><br/>
+
+<a href="https://bitbucket.org/simbigo/openerp-api/src/master/" target="_blank">https://bitbucket.org/simbigo/openerp-api/src/master/</a><br/>
+
+It does not require xmlrpc php module (that is not available in PHP 8).<br/>
+
+<br/>
+
+      <a href="/demo/wp/no/modifications/odoo_api/screenshots/last_processed.png" target="_blank"> screenshot 1</a><br/>
+
+      <a href="/demo/wp/no/modifications/odoo_api/screenshots/new_odoo_order.png" target="_blank"> screenshot 2</a><br/>
+
+Instructions of how to install it: <a href="/demo/wp/no/modifications/odoo_api/README.html#installation" target="_blank">README.html</a><br/>
+
+Download the modified Notify Odoo plugin: <a href="/demo/wp/no/modifications/odoo_api/no_1.0.2_with_odoo_api.zip" target="_blank">no_1.0.2_with_odoo_api.zip</a><br/>
+
+
+
+    </dd>
+
+
+
+
+
+
+
+  </dl>
+
+</div>          
+
+     
+</body>
+</html>
