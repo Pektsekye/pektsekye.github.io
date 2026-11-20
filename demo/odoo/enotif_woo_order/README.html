@@ -1,0 +1,93 @@
+<br/>
+<b>Enotif WooCommerce Order 1.0.0</b>&nbsp;&nbsp;<br/>
+<br/>
+<br/>
+This Odoo module receives a notification of new order from a WooCommerce website.<br />
+After a few minutes the Odoo website sends a request to the WooCommerce website to get the new order data and then saves it as a new order on the Odoo website.<br />
+<br />
+<br />
+<br />
+<a name="index"></a>
+<br />
+<b>Index:</b>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#example">An example of how to use it</a></li>
+</ul>
+<br/>
+<a name="installation"></a>
+<br />
+<h3>Installation</h3>
+<br>
+Requires  Odoo 12, WordPress 4.7 or later,  WooCommerce 3.5 or later<br>
+<br>
+<b>1)</b> Unzip the downloaded zip archive on your computer.<br>
+It contains three folders:<br>
+enotif<br>
+enotif_woo<br>
+enotif_woo_order<br>
+<br>
+<b>2)</b> Put them into the "addons" folder of your Odoo server.<br>
+If you don't know where the "addons" folder is located.<br/>
+When you start odoo from terminal it displays odoo version and the addons paths:<br/>
+Example:<br/>
+<span style="font-family:Consolas,Monaco,Lucida Console;font-size:x-small;">
+odoo: Odoo version 12.0-20190806<br/>
+2019-09-13 06:48:58,433 52031 INFO ? odoo: addons paths: ['/Users/jason/Library/Application Support/Odoo/addons/12.0', '/Users/jason/Odoo12/lib/python3.7/site-packages/odoo-12.0.post20190806-py3.7.egg/odoo/addons']
+</span><br/>
+<br/>
+Also if you can locate the "openerp-server.conf" file (usually located in /etc/odoo on Linux)<br>
+You can find the addons paths in it.<br>
+If you cannot find the "openerp-server.conf" file you can generate it with command:<br>
+<span style="font-family:Consolas,Monaco,Lucida Console;font-size:x-small;">
+./odoo -s -c openerp-server.conf
+</span><br>
+<br>
+<b>3)</b> Re-start Odoo<br>
+<b>4)</b> Activate the developer mode in <i>Odoo admin panel -&gt; Settings</i> (<a href="screenshots/activate_developer_mode.png" target="_blank">screenshot</a>)<br>
+<b>5)</b> Update the apps list in <i>Odoo admin panel -&gt; Apps</i> (<a href="screenshots/update_app_list.png" target="_blank">screenshot</a>)<br>
+<b>6)</b> Find the "External Notifications" application and install it. (<a href="screenshots/enotif_module.png" target="_blank">screenshot</a>)<br>
+It will automatically install the "Enotif WooCommerce Order" module.<br>
+<b>7)</b> Check if it works. Go to <i>Odoo admin panel -&gt; External Notifications</i><br> 
+The Order section should be available if this module is installed. (<a href="screenshots/order_section.png" target="_blank">screenshot</a>)<br>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br/>
+<br/>
+<a name="example"><h3>An example of how to use it</h3></a>
+<b>1)</b> On the WooCommerce website install the <a href="https://wordpress.org/plugins/notify-odoo/" target="_blank">Notify Odoo</a> WordPress plugin.<br>
+<b>2)</b> Go to <i>WordPress dashboard -&gt; WooCommerce -&gt; Settings -&gt; Advanced -&gt; REST API</i><br>
+And click the Add Key button. (<a href="screenshots/add_key.png" target="_blank">screenshot</a>)<br>
+<b>3)</b> Generate a key with read/write permissions. (<a href="screenshots/key_permissions.png" target="_blank">screenshot</a>)<br>
+<b>4)</b> Copy the secret keys and save them in some temporary file on your computer. (<a href="screenshots/secret_key.png" target="_blank">screenshot</a>)<br>
+<b>5)</b> On the Odoo website go to <i>Odoo admin panel -&gt; External Notifications -&gt; WooCommerce Keys</i><br>
+And specify your WooCommerce URL and the secret keys. (<a href="screenshots/odoo_connect_to_woocommerce.png" target="_blank">screenshot</a>)<br>
+<b>6)</b> On the same page click the "Check Connection" button to save the fields and verify the connection to your WooCommerce website. (<a href="screenshots/check_connection_to_woocommerce.png" target="_blank">screenshot</a>)<br>
+If there is a connection error it is possible that your WooCommerce website blocks requests from bots, scripts. You should ask your hosting support about it.<br>
+<b>7)</b> On the WooCommerce website go to <i>WordPress dashboard -&gt; Notify Odoo</i><br>
+And specify URL of your Odoo website. (<a href="screenshots/settings_page.png" target="_blank">screenshot</a>)<br> 
+<b>8)</b> Click the "Check Connection" button to verify connection from WooCommerce to Odoo (<a href="screenshots/check_connection_to_odoo_button.png" target="_blank">screenshot</a>)<br>
+If there is a connection error and the Odoo server is installed on a local computer check if your Odoo server is accessible to the web.<br>
+<b>9)</b> If the connection is good then try to make a new order (buy something as a customer) on the WooComerce website. (<a href="screenshots/make_new_order.png" target="_blank">screenshot</a>)<br>
+<b>10)</b> Wait for two minutes. Then go to <i>Odoo admin panel -&gt; Website -&gt; Orders</i> <br>
+And check if your new order has been copied from WooCommerce to Odoo (<a href="screenshots/new_order_on_odoo.png" target="_blank">screenshot</a>)<br>
+<br>
+<br>
+<a href="#index">Back to the index</a>
+<br>
+<br>
+<br/>
+<br>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
